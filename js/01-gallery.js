@@ -27,4 +27,34 @@ galleryItems.forEach((element) => {
   galleryImage.setAttribute("data-source", element.original);
   galleryImage.alt = element.description;
 
-  
+  /*собрать гроздь и кинуть в массив */
+  galleryItem.append(galleryLink);
+  galleryLink.append(galleryImage);
+  itemsOfGallery.push(galleryItem);
+});
+
+/*...spread call to mind*/
+gallery.append(...itemsOfGallery);
+
+gallery.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (!event.target.nodeName == "IMG") {
+    return;
+  }
+
+  const selectedImage = event.target.getAttribute("data-source");
+
+  const instance = basicLightbox.create(`
+    <img src="${selectedImage}" width="800" height="600">
+`);
+
+  instance.show();
+
+  gallery.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  });
+});
+
+console.log(galleryItems);
