@@ -38,7 +38,7 @@ gallery.append(...itemsOfGallery);
 
 gallery.addEventListener("click", (event) => {
   event.preventDefault();
-  if (!event.target.nodeName == "IMG") {
+  if (event.target.nodeName !== "IMG") {
     return;
   }
 
@@ -54,6 +54,7 @@ gallery.addEventListener("click", (event) => {
     if (event.key === "Escape") {
       instance.close();
     }
+    gallery.removeEventListener("keydown", event);
   });
 });
 

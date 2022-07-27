@@ -5,9 +5,13 @@ const gallery = document.querySelector(".gallery");
 const itemsOfGallery = [];
 
 galleryItems.forEach((element) => {
-  const galleryLink = document.createElement("a");
-  galleryLink.className = "gallery__link";
-  galleryLink.href = element.original;
+  /*<a class="gallery__item" href="large-image.jpg">
+  <img class="gallery__image" src="small-image.jpg"
+   alt="Image description" />
+</a> */
+  const galleryItem = document.createElement("a");
+  galleryItem.className = "gallery__item";
+  galleryItem.href = element.original;
 
   const galleryImage = document.createElement("img");
   galleryImage.className = "gallery__image";
@@ -15,8 +19,8 @@ galleryItems.forEach((element) => {
   galleryImage.setAttribute("title", element.description);
   galleryImage.alt = element.description;
 
-  galleryLink.append(galleryImage);
-  itemsOfGallery.push(galleryLink);
+  galleryItem.append(galleryImage);
+  itemsOfGallery.push(galleryItem);
 });
 
 gallery.append(...itemsOfGallery);
